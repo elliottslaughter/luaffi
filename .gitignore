@@ -1,3 +1,4 @@
+*~
 call_*.h
 *.dll
 *.exp
@@ -22,3 +23,5 @@ call_*.h
 *.swp
 *.dylib
 /tmp
+/install
+/lua-5.*
