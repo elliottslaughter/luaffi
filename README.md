@@ -13,7 +13,10 @@ MIT same as Lua 5.1. See full license text in ffi.h.
 
 Source
 ------
-https://github.com/jmckaskill/luaffi
+
+https://github.com/elliottslaughter/luaffi
+
+Originally forked from https://github.com/jmckaskill/luaffi
 
 Platforms
 ---------
