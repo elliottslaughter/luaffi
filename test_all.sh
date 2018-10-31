@@ -27,5 +27,6 @@ fi
 
 export PATH="$PATH:$LUA_PREFIX/bin"
 
+make clean
 make all
 make test
