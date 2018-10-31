@@ -3,7 +3,13 @@
 PKG_CONFIG=pkg-config
 LUA=lua
 
-LUA_CFLAGS=`$(PKG_CONFIG) --cflags lua5.2 2>/dev/null || $(PKG_CONFIG) --cflags lua`
+ifeq ($(shell $(PKG_CONFIG) lua5.2 || $(PKG_CONFIG) lua; echo $?),0)
+LUA_CFLAGS=$(shell $(PKG_CONFIG) --cflags lua5.2 2>/dev/null || $(PKG_CONFIG) --cflags lua)
+else ifdef LUA_PREFIX
+LUA_CFLAGS=-I$(LUA_PREFIX)/include
+else
+$(error Lua could not be found via pkg-config and LUA_PREFIX is undefined. Either set LUA_PREFIX or configure pkg-config so that it can find Lua.)
+endif
 SOCFLAGS=-fPIC
 SOCC=$(CC) -shared $(SOCFLAGS)
 CFLAGS=-fPIC -g -Wall -Werror $(LUA_CFLAGS) -fvisibility=hidden -Wno-unused-function --std=gnu99
